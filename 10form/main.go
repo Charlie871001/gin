@@ -17,6 +17,8 @@ func main() {
 	r := gin.Default()
 	r.POST("loginForm", func(c *gin.Context) {
 		var form Login
+		// Bind()默认解析并绑定form格式
+		// 根据请求头中content-type自动推断
 		if err := c.Bind(&form); err != nil {
 			c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 			return
